@@ -123,7 +123,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'  # The URL that static files will be accessible from in the browser
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'hosp_user', 'static'),  # Path to hosp_user/static
+    os.path.join(BASE_DIR, 'hosp_user', 'static', 'assets'),  # assets in hosp_user
+    os.path.join(BASE_DIR, 'hosp_staff', 'static', 'assets'),  # assets in hosp_staff
+    os.path.join(BASE_DIR, 'hosp_visitor', 'static'),         # static in hosp_visitor
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles' 
  # This is used in production to collect all static files
