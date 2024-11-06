@@ -1,0 +1,92 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+{% block title %}ADMIN DASHBOARD {% endblock %}
+{% block content %}
+<div class="main-wrapper">
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-box text-center">
+                        <div class="row mt-4">
+                            <div class="col-lg-8 offset-lg-2">
+                                <h4 class="page-title">Add Employee</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            {{ user_form.username.label_tag }}
+                                            {{ user_form.username }}
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            {{ user_form.password.label_tag }}
+                                            {{ user_form.password }}
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            {{ user_form.first_name.label_tag }}
+                                            {{ user_form.first_name }}
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            {{ user_form.last_name.label_tag }}
+                                            {{ user_form.last_name }}
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            {{ user_form.email.label_tag }}
+                                            {{ user_form.email }}
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            {{ employee_form.employee_id.label_tag }}
+                                            {{ employee_form.employee_id }}
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            {{ employee_form.mobile_number.label_tag }}
+                                            {{ employee_form.mobile_number }}
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            {{ employee_form.joining_date.label_tag }}
+                                            {{ employee_form.joining_date }}
+                                        </div>
+                                    </div>
+                                    
+                                    {% if staff_form %}
+                                        <div class="row">
+                                            {% if staff_type == 'doctor' %}
+                                                <div class="col-md-6 form-group">
+                                                    {{ staff_form.department.label_tag }}
+                                                    {{ staff_form.department }}
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    {{ staff_form.doc_image.label_tag }}
+                                                    {{ staff_form.doc_image }}
+                                                </div>
+                                            {% elif staff_type == 'nurse' %}
+                                                <div class="col-md-6 form-group">
+                                                    {{ staff_form.nurse_image.label_tag }}
+                                                    {{ staff_form.nurse_image }}
+                                                </div>
+                                            {% elif staff_type == 'receptionist' %}
+                                                <div class="col-md-6 form-group">
+                                                    {{ staff_form.receptionist_image.label_tag }}
+                                                    {{ staff_form.receptionist_image }}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    {% endif %}
+                                   
+                                    <div class="m-t-20 text-center">
+                                        <button class="btn btn-primary submit-btn">Create Employee</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

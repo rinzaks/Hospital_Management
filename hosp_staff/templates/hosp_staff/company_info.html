@@ -1,0 +1,49 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+
+{% block title %}Company Details{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Edit Company Details</h4>
+            </div>
+        </div>
+
+        <!-- Show success message -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Form to add/update company details -->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary submit-btn" type="submit">Save</button>
+        </form>
+
+        <!-- Display existing company details if available -->
+        {% if company_location %}
+        <div class="mt-4">
+            <h5>Current Company Details:</h5>
+            <ul>
+                <li><strong>Name:</strong> {{ company_location.name }}</li>
+                <li><strong>Address:</strong> {{ company_location.address }}</li>
+                <li><strong>Phone:</strong> {{ company_location.phone }}</li>
+                <li><strong>Email:</strong> {{ company_location.email }}</li>
+                <li><strong>Website:</strong> <a href="{{ company_location.website }}" target="_blank">{{ company_location.website }}</a></li>
+                <!-- Add more fields as needed -->
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

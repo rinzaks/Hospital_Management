@@ -1,0 +1,95 @@
+{% extends 'hosp_staff/doc_index.html' %}
+{% load static %}
+{% block title %}Patient Profile{% endblock %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-7 col-6">
+                <h4 class="page-title">Patient Profile</h4>
+            </div>
+
+            <div class="col-sm-5 col-6 text-right m-b-30">
+                <a href="{% url 'doc_edit_patient' patient.id %}" class="btn btn-primary btn-rounded">
+                    <i class="fa fa-pencil"></i> Edit Profile
+                </a>
+            </div>
+        </div>
+        <div class="card-box profile-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-view">
+                        <div class="profile-basic">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="profile-info-left">
+                                        <h3 class="user-name m-t-0 mb-0">{{ patient.user.first_name }} {{ patient.user.last_name }}</h3>
+                                        <small class="text-muted">Gender: {{ patient.gender }}</small>
+                                        <div class="staff-id">EID Number: {{ patient.eid_num }}</div>
+                                    </div>
+                                    <ul class="personal-info">
+                                        <li>
+                                            <span class="title">Phone:</span>
+                                            <span class="text">{{ patient.mob_num }}</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Email:</span>
+                                            <span class="text">{{ patient.email }}</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Date of Birth:</span>
+                                            <span class="text">{{ patient.dob|date:"jS F" }}</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Created At:</span>
+                                            <span class="text">{{ patient.created_at|date:"jS F Y" }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+            <div class="card-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="page-title">Medical History</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped custom-table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Illness</th>
+                                        <th>Surgeries</th>
+                                        <th>Hospitalizations</th>
+                                        <th>Family Medical History</th>
+                                        <th>Created At</th>
+                                        <th class="text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if medical_histories %}
+                                        {% for history in medical_histories %}
+                                        <tr>
+                                            <td>{{ history.illness }}</td>
+                                            <td>{{ history.surgeries }}</td>
+                                            <td>{{ history.hospitalizations }}</td>
+                                            <td>{{ history.family_medical_history }}</td>
+                                            <td>{{ history.created_at|date:"jS F Y" }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                    <tr>
+                                        <td colspan="6" class="text-center">No medical history found.</td>
+                                    </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+</div>
+{% endblock %}

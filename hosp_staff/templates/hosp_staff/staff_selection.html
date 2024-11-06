@@ -1,0 +1,21 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+{% block title %}DOCTORS LIST {% endblock %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-box text-center">
+                        <h4 class="card-title">Choose the Category of Employee</h4>
+                        <div class="btn-group-vertical w-50 mx-auto">
+                            <a href="{% url 'create_staff' 'doctor' %}" class="btn btn-primary mb-2">Doctor</a>
+                            <a href="{% url 'create_staff' 'nurse' %}" class="btn btn-primary mb-2">Nurse</a>
+                            <a href="{% url 'create_staff' 'receptionist' %}" class="btn btn-primary mb-2">Receptionistt</a>
+                        </div>
+                    </div>
+                </div>                
+        </div>
+    </div>
+</div>
+{% endblock %}

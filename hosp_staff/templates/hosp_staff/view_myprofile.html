@@ -1,0 +1,140 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+{% block title %}ADMIN PROFILE{% endblock %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %} 
+        <div class="row">
+            <div class="col-sm-7 col-6">
+                <h4 class="page-title">My Profile</h4>
+            </div>
+
+            <div class="col-sm-5 col-6 text-right m-b-30">
+                <a href="{% url 'edit_admin_profile' %}" class="btn btn-primary btn-rounded"><i class="fa fa-plus"></i> Edit Profile</a>
+            </div>
+        </div>
+        <div class="card-box profile-header">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-view">
+                        <div class="profile-img-wrap">
+                            <div class="profile-img">
+                                <a href="#"><img class="avatar" src="{% static 'assets/img/doctor-03.jpg' %}" alt=""></a> <!-- Placeholder image -->
+                            </div>
+                        </div>
+                        <div class="profile-basic">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="profile-info-left">
+                                        <h4 class="user-name m-t-0 mb-0">{{ user.first_name }} {{ user.last_name }}</h4>
+                                        <div class="staff-id">Superuser ID: {{ user.id }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <ul class="personal-info">
+                                        <li>
+                                            <span class="title">Status:</span>
+                                            <span class="text">{{ user.is_active }}</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Superuser status:</span>
+                                            <span class="text">{{ user.is_superuser }}</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Last Login:</span>
+                                            <span class="text">{{ user.last_login }}</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Date Joined:</span>
+                                            <span class="text">{{ user.date_joined }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="profile-tabs">
+            <ul class="nav nav-tabs nav-tabs-bottom">
+                <li class="nav-item"><a class="nav-link active" href="#about-cont-{{ pat.id }}" data-toggle="tab">Additional Information</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane show active" id="about-cont">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-box">
+                                <h3 class="card-title">Roles & Permissions</h3>
+                                <div class="roles-box">
+                                    <ul class="roles-list">
+                                        <li>
+                                            <div class="role-content">
+                                                <div class="role-name">
+                                                    <strong>Admin</strong>
+                                                    <span class="permissions">Full access to all system features.</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="role-content">
+                                                <div class="role-name">
+                                                    <strong>Receptionist</strong>
+                                                    <span class="permissions">Manage patient appointments and records.</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="role-content">
+                                                <div class="role-name">
+                                                    <strong>Doctor</strong>
+                                                    <span class="permissions">View patient records and schedule appointments.</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-box mb-0">
+                                <h3 class="card-title">More Details</h3>
+                                <div class="details-box">
+                                    <ul class="personal-info">
+                                        <li>
+                                            <span class="title">Username:</span>
+                                            <span class="text">{{ user.username }}</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Email:</span>
+                                            <span class="text"><a href="#">{{ user.email }}</a></span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Phone:</span>
+                                            <span class="text"><a href="#">{{ admin_profile.phone_number }}</a></span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Address:</span>
+                                            <span class="text"><a href="#">{{ admin_profile.address }}</a></span>
+                                        </li>
+                                        <li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

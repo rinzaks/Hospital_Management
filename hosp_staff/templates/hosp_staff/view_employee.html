@@ -1,0 +1,142 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+{% block title %}Employees {% endblock %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-7 col-6">
+                <h4 class="page-title">My Profile</h4>
+            </div>
+
+            <div class="col-sm-5 col-6 text-right m-b-30">
+                <a href="{% url 'edit_employee' employee.id %}" class="btn btn-primary btn-rounded">
+                    <i class="fa fa-plus"></i> Edit Profile
+                </a>
+            </div>
+        </div>
+        <div class="card-box profile-header">
+            <div class="row" style="height: 150px;">
+                <div class="col-md-12">
+                    <div class="profile-view">
+                        <div class="profile-img-wrap">
+                            <div class="profile-img" style="object-fit: cover;">
+                                {% if employee.doctor %}
+                                <img class="avatar" src="{{ employee.doctor.doc_image.url }}" alt="">
+                                {% elif employee.nurse %}
+                                <img class="avatar" src="{{ employee.nurse.nurse_image.url }}" alt="">
+                                {% else %}
+                                <img class="avatar" src="{% static 'assets/img/default-user.jpg' %}" alt="">
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="profile-basic">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="profile-info-left">
+                                        <h3 class="user-name m-t-0 mb-0">{{ employee.user.get_full_name }}</h3>
+                                        <div class="staff-id">Employee ID: {{ employee.employee_id }}</div>
+                                        {% if employee.is_active %}
+                                        <div class="staff-id">Employee status:Active</div>
+                                        {% else %}
+                                        <div class="staff-id">Employee status:Inactive</div>
+                                        {% endif %}
+                                        <div class="staff-id">Employee Type: 
+                                            {% if employee.doctor %}
+                                            Doctor
+                                            {% elif employee.nurse %}
+                                            Nurse
+                                            {% else %}
+                                            Unknown
+                                            {% endif %}
+                                        </div>
+                                        {% if employee.doctor %}
+                                        <div class="staff-id">Department: {{ employee.doctor.department }}</div>
+                                        {% endif %}
+ 
+                                        {% if employee.deleted_at %}
+                                        <div class="alert alert-info">Deleted At: {{ employee.deleted_at }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                        
+                </div>
+            </div> 
+        </div>
+        <br>
+        <div class="profile-tabs">
+            <ul class="nav nav-tabs nav-tabs-bottom">
+                <li class="nav-item"><a class="nav-link active" href="#contact-info" data-toggle="tab">Details</a></li>
+                <li class="nav-item"><a class="nav-link" href="#education-info" data-toggle="tab">Education</a></li>
+            </ul>
+        
+            <div class="tab-content">
+                <div class="tab-pane show active" id="contact-info">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-box">
+                                <h3 class="card-title">Contact Information</h3>
+                                <ul class="personal-info">
+                                    <li>
+                                        <span class="title">Phone:</span>
+                                        <span class="text">{{ employee.mobile_number }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="title">Email:</span>
+                                        <span class="text">{{ employee.user.email }}</span>
+                                    </li>
+                                    <li>
+                                        <span class="title">Joining Date:</span>
+                                        <span class="text">{{ employee.joining_date }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane" id="education-info">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card-box">
+                                <h3 class="card-title">Education Information</h3>
+                                <div class="experience-box">
+                                    <ul class="experience-list">
+                                        <li>
+                                            <div class="experience-user">
+                                                <div class="before-circle"></div>
+                                            </div>
+                                            <div class="experience-content">
+                                                <div class="timeline-content">
+                                                    <a href="#/" class="name">International College of Medical Science (UG)</a>
+                                                    <div>MBBS</div>
+                                                    <span class="time">2001 - 2003</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="experience-user">
+                                                <div class="before-circle"></div>
+                                            </div>
+                                            <div class="experience-content">
+                                                <div class="timeline-content">
+                                                    <a href="#/" class="name">International College of Medical Science (PG)</a>
+                                                    <div>MD - Obstetrics & Gynaecology</div>
+                                                    <span class="time">1997 - 2001</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

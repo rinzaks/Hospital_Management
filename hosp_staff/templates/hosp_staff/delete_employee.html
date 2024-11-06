@@ -1,0 +1,18 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+{% block title %}Delete Employee{% endblock %}
+{% block content %}
+<div class="main-wrapper">
+    <div class="page-wrapper">
+        <div class="content text-center">  <!-- Added text-center for Bootstrap alignment -->
+            <h4 class="page-title">Delete Employee</h4>
+            <p>Are you sure you want to delete {{ employee.user.get_full_name }}?</p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a href="{% url 'employees' %}"class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

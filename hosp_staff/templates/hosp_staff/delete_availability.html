@@ -1,0 +1,18 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+{% block title %}Delete Availability{% endblock %}
+{% block content %}
+<div class="main-wrapper">
+    <div class="page-wrapper">
+        <div class="content text-center">  <!-- Added text-center for Bootstrap alignment -->
+            <h4 class="page-title">Delete Availability</h4>
+            <p>Are you sure you want to delete availability for {{ availability.date }}?</p>
+            <form method="POST" action="{% url 'delete_availability' availability.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a href="{% url 'doctors_availability' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

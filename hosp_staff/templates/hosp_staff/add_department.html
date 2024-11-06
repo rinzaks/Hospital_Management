@@ -1,0 +1,54 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+{% block title %}Add Department{% endblock %}
+{% block content %}
+<div class="main-wrapper">
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Add Department</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <form method="POST" enctype="multipart/form-data">  <!-- Add enctype for file upload -->
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_name">Department Name</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_description">Description</label>
+                            {{ form.description }}
+                        </div>
+                        <div class="form-group">
+                            <label class="display-block">Department Status</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="product_active" value="active" checked>
+                                <label class="form-check-label" for="product_active">Active</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="status" id="product_inactive" value="inactive">
+                                <label class="form-check-label" for="product_inactive">Inactive</label>
+                            </div>
+                        </div>                       
+                        <div class="form-group">
+                            <label for="id_image">Department Image</label>
+                            <div class="input-group">
+                                <input type="file" id="id_image" name="image" class="form-control-file" accept="image/*">
+                                <div class="input-group-append">
+                                    <label class="btn btn-primary" for="id_image">Upload Image</label>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="m-t-20 text-center">
+                            <button class="btn btn-primary submit-btn">Create Department</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

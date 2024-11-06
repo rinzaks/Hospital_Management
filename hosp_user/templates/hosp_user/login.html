@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+        <title>LOGIN</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+<body>
+<div class="main-wrapper account-wrapper">
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+  <div class="account-page">
+      <div class="account-center">
+          <div class="account-box">
+              <form method="POST" action="{% url 'login_patient' %}">  <!-- Change action URL as needed -->
+                  {% csrf_token %}
+                  <div class="account-logo text-center">
+                      <a href="{% url 'home' %}">
+                          <img src="{% static 'assets/img/logo-dark.png' %}" alt="">
+                      </a>
+                  </div>
+                  <h4 class="text-center">Hello Patient, login here</h4>  <!-- Updated text -->
+                  {{ form.as_p }}
+                  <div class="form-group text-center">
+                      <button type="submit" class="btn btn-primary account-btn">Login</button>
+                  </div>
+              </form>
+              <div class="text-center mt-3">
+                  <a href="{% url 'register' %}">Register</a> |  <!-- Link to registration page -->
+                  <a href="#">Forgot your password?</a>  <!-- Link to forgot password page -->
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="sidebar-overlay" data-reff=""></div>
+<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'assets/js/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'assets/js/Chart.bundle.js' %}"></script>
+<script src="{% static 'assets/js/chart.js' %}"></script>
+<script src="{% static 'assets/js/app.js' %}"></script>
+
+</body>
+</html>
+

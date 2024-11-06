@@ -1,0 +1,32 @@
+{% extends 'hosp_staff/doc_index.html' %}
+{% load static %}
+{% block title %}Add Patient{% endblock %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Create Patient</h4>
+            </div>
+        </div>
+        {% if messages %}
+        <ul class="error-messages">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <form method="POST">
+        {% csrf_token %}
+        <div>
+          <h3>Patient Form</h3>
+          {{ patient_form.as_p }}
+        </div>
+        <div>
+          <h3>Medical History Form</h3>
+          {{ medical_history_form.as_p }}
+        </div>
+        <button type="submit">Create Patient</button>
+      </form>
+</div>
+{% endblock %}

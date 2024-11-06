@@ -1,0 +1,25 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+
+{% block title %}Edit Admin Profile{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Edit Profile</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form method="post" enctype="multipart/form-data">  <!-- Added enctype for file upload -->
+                    {% csrf_token %}
+                    {{ form.as_p }}  <!-- Use the 'form' variable passed from the view -->
+                    <input type="submit" class="btn btn-primary" value="Update">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

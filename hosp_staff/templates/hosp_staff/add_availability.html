@@ -1,0 +1,34 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+{% block title %}ADMIN DASHBOARD {% endblock %}
+{% block content %}
+<div class="main-wrapper">
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row"> 
+            <div class="col-lg-8 offset-lg-2">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Add Schedule</h4>
+                </div>
+                    <div class="content">
+                        <div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <div class="m-t-20 text-center">
+                                        <button type="submit" class="btn btn-primary submit-btn">Create Schedule</button>
+                                    </div>
+                                </form> <!-- Remove this redundant closing tag -->
+                            </div>
+                           </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+        </div>
+</div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+{% block title %}EDIT EMPLOYEE{% endblock %}
+{% block content %}
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Edit Employee</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                                  
+                    <div class="form-group">
+                        {{ employee_form.employee_id.label_tag }}
+                        {{ employee_form.employee_id }}
+                    </div>
+                    <div class="form-group">
+                        {{ employee_form.mobile_number.label_tag }}
+                        {{ employee_form.mobile_number }}
+                    </div>
+                    <div class="form-group">
+                        {{ employee_form.joining_date.label_tag }}
+                        {{ employee_form.joining_date }}
+                    </div>
+                    <div class="form-group">
+                        {{ user_form.email.label }}
+                        {{ user_form.email }}
+                        {{ user_form.email.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ user_form.username.label }}
+                        {{ user_form.username }}
+                        {{ user_form.username.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ user_form.password.label }}
+                        {{ user_form.password }}
+                        {{ user_form.password.errors }}
+                    </div>
+                    {% if staff_form %}
+                    {% if staff_type == 'doctor' %}
+                        <div class="form-group">
+                            {{ staff_form.department.label_tag }}
+                            {{ staff_form.department }}
+                        </div>
+                        <div class="form-group">
+                            {{ staff_form.doc_image.label_tag }}
+                            {{ staff_form.doc_image }}
+                        </div>
+                    {% elif staff_type == 'nurse' %}
+                    <div class="form-group">
+                        {{ staff_form.nurse_image.label_tag }}
+                        {{ staff_form.nurse_image }}
+                    </div>
+                    {% elif staff_type == 'hr' %}
+                        <!-- HR fields go here -->
+                        <div class="form-group">
+                            {{ staff_form.hr_image.label_tag }}
+                            {{ staff_form.hr_image }}
+                        </div>
+                    {% elif staff_type == 'receptionist' %}
+                        <div class="form-group">
+                            {{ staff_form.receptionist_image.label_tag }}
+                            {{ staff_form.receptionist_image }}
+                        </div>
+                    {% elif staff_type == 'accountant' %}
+                        <div class="form-group">
+                            {{ staff_form.accountant_image.label_tag }}
+                            {{ staff_form.accountant_image }}
+                        </div>
+                    {% endif %}
+                {% endif %}
+                
+                    <button type="submit" class="btn btn-primary">Update Employee</button>
+                </form>
+                            
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

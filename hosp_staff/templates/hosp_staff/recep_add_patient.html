@@ -1,0 +1,62 @@
+{% extends 'hosp_staff/recep_index.html' %}
+{% load static %}
+{% block title %}Create Patient{% endblock %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4 class="page-title">Create Patient</h4>
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="card-box">
+                <h3 class="card-title">Patient Information</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ patient_form.eid_num.label_tag }}
+                        {{ patient_form.eid_num }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ patient_form.mob_num.label_tag }}
+                        {{ patient_form.mob_num }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ patient_form.dob.label_tag }}
+                        {{ patient_form.dob }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ patient_form.gender.label_tag }}
+                        {{ patient_form.gender }}
+                    </div>
+                </div>
+            </div>
+            <div class="card-box">
+                <h3 class="card-title">Medical History</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ medical_history_form.past_conditions.label_tag }}
+                        {{ medical_history_form.past_conditions }}
+                    </div>
+                    <div class="col-md-12">
+                        {{ medical_history_form.surgeries.label_tag }}
+                        {{ medical_history_form.surgeries }}
+                    </div>
+                    <div class="col-md-12">
+                        {{ medical_history_form.hospitalizations.label_tag }}
+                        {{ medical_history_form.hospitalizations }}
+                    </div>
+                    <div class="col-md-12">
+                        {{ medical_history_form.family_medical_history.label_tag }}
+                        {{ medical_history_form.family_medical_history }}
+                    </div>
+                </div>
+            </div>
+            <div class="text-center m-t-20">
+                <button class="btn btn-primary submit-btn" type="submit">Create Patient</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

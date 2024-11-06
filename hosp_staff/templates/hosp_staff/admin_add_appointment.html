@@ -1,0 +1,42 @@
+{% extends 'hosp_staff/index.html' %}
+{% load static %}
+{% block title %}ADD APPOINTMENT{% endblock %}
+{% block content %}
+<div class="main-wrapper">
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="row"> 
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="col-lg-8 offset-lg-2">
+                        <h4 class="page-title">Add Appointment</h4>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    {% if patient %}
+                                        <h3>Patient Details</h3>
+                                        <p>Name: {{ patient.first_name }} {{ patient.last_name }}</p>
+                                        <p>Email: {{ patient.email }}</p>
+                                        <h3>Appointment Details</h3>
+                                        {{ appointment_form.as_p }}
+                                    {% else %}
+                                        <h3>Patient Details</h3>
+                                        {{ patient_form.as_p }}
+                                        <h3>Appointment Details</h3>
+                                        {{ appointment_form.as_p }}
+                                    {% endif %}
+                                    <button type="submit">Schedule Appointment</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'hosp_user/base.html' %}
+{% load static %}
+{% block title %}Delete Profile{% endblock %}
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+        <h4>Delete Profile</h4>
+        <p>Are you sure you want to delete your profile, {{ patient.user.get_full_name }}?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete My Profile</button>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

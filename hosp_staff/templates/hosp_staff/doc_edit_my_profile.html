@@ -1,0 +1,22 @@
+{% extends 'hosp_staff/doc_index.html' %}
+{% load static %}
+{% block title %}EDIT PROFILE {% endblock %}
+{% block content %}
+<div class="page-wrapper">
+<div class="container">
+    <h2>Edit Profile</h2>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ staff_form.as_p }}
+        {% if specific_form %}
+            {{ specific_form.as_p }}
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+</div>
+{% endblock %}
